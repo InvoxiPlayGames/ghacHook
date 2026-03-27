@@ -1,7 +1,7 @@
 #include <Shlwapi.h>
 #include "config.h"
 
-ghaHook_config config;
+ghacHook_config config;
 
 void load_config()
 {

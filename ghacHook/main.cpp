@@ -1,27 +1,29 @@
+#define _CRT_SECURE_NO_WARNINGS
+#define WIN32_LEAN_AND_MEAN
 #include <Windows.h>
 #include <stdio.h>
 #include <Shlwapi.h>
 #include <MinHook.h>
 
 #include "exception_handler.h"
-#include "gha_offsets.h"
-#include "gha_jamma.h"
-#include "ghaHook_version.h"
+#include "ghac_offsets.h"
+#include "ghac_jamma.h"
+#include "ghacHook_version.h"
 #include "config.h"
 
-void ghaHook_fatal(const char *text)
+void ghacHook_fatal(const char *text)
 {
-    MessageBoxA(NULL, text, "ghaHook Fatal Error", MB_ICONERROR);
+    MessageBoxA(NULL, text, "ghacHook Fatal Error", MB_ICONERROR);
     exit(-1);
 }
 
-gha_exe_offsets offsets;
+ghac_exe_offsets offsets;
 jammaop2_struct op2data;
 
-int ghaHook_InputThreadActive = 0;
-DWORD WINAPI ghaHook_InputThread(void *)
+int ghacHook_InputThreadActive = 0;
+DWORD WINAPI ghacHook_InputThread(void *)
 {
-    while (ghaHook_InputThreadActive)
+    while (ghacHook_InputThreadActive)
     {
         memset(&op2data, 0, sizeof(op2data));
         if (GetKeyState('Z') & 0x8000)
@@ -93,7 +95,7 @@ int __cdecl JammaOpHooked(int opId, ...)
         {
             char *out_str = va_arg(args, char *);
             int str_length = va_arg(args, int);
-            strncpy(out_str, "ghaHook " GHAHOOK_VERSION_STR, str_length);
+            strncpy(out_str, "ghaHook " GHACHOOK_VERSION_STR, str_length);
             r = 0;
             break;
         }
@@ -154,7 +156,7 @@ void init_ghaHook()
 {
     init_console();
     load_config();
-    printf("Hello from ghaHook " GHAHOOK_VERSION_STR "!\n");
+    printf("Hello from ghacHook " GHACHOOK_VERSION_STR "!\n");
     // hook all the functions
     MH_Initialize();
     if (config.EnableIOHooks)
@@ -200,7 +202,7 @@ void init_ghaHook()
     CodePatch(offsets.RTInitCoinUp, &ret, 1);
     CodePatch(offsets.RTCoinUpSetLocation, &ret, 1);
     // start our thread
-    //CreateThread(NULL, 0x8000, ghaHook_InputThread, NULL, 0, NULL);
+    //CreateThread(NULL, 0x8000, ghacHook_InputThread, NULL, 0, NULL);
 }
 
 BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
@@ -210,7 +212,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
         case DLL_PROCESS_ATTACH:
             if (InitOffsets(&offsets) == -1)
             {
-                ghaHook_fatal("Unsupported executable version!");
+                ghacHook_fatal("Unsupported executable version!");
             }
             install_exception_handler(offsets.pre_main);
             break;

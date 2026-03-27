@@ -18,27 +18,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gha_offsets.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="exception_handler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="config.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ghac_offsets.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\minhook\MinHook.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gha_jamma.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gha_offsets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="gha_rtguitar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="exception_handler.h">
@@ -50,7 +41,16 @@
     <ClInclude Include="config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ghaHook_version.h">
+    <ClInclude Include="ghacHook_version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ghac_jamma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ghac_offsets.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ghac_rtguitar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,8 +1,8 @@
 #include <memory.h>
-#include "gha_offsets.h"
+#include "ghac_offsets.h"
 
 // Wed Dec 09 12:13:42 2009 build of GH3.exe
-void InitOffsets_4b1fe8d6(gha_exe_offsets *offsets)
+void InitOffsets_4b1fe8d6(ghac_exe_offsets *offsets)
 {
     // core
     offsets->WinMainCRTStartup = 0x6a778e;
@@ -39,9 +39,9 @@ void InitOffsets_4b1fe8d6(gha_exe_offsets *offsets)
     offsets->volumeWaitingCount2 = 0xc26c24;
 }
 
-int InitOffsets(gha_exe_offsets *offsets)
+int InitOffsets(ghac_exe_offsets *offsets)
 {
-    memset(offsets, 0, sizeof(gha_exe_offsets));
+    memset(offsets, 0, sizeof(ghac_exe_offsets));
     // switch IMAGE_NT_HEADERS32->FileHeaders->TimeDateStamp
     switch (*(int *)0x400158)
     {

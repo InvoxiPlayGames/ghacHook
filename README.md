@@ -1,4 +1,4 @@
-# ghaHook
+# ghacHook
 
 Hooks to GHArcade to improve its lifespan and usability in 2025 and beyond.
 
@@ -6,10 +6,12 @@ Hooks to GHArcade to improve its lifespan and usability in 2025 and beyond.
 
 You will still need a valid authentication dongle to launch the game.
 
-Builds with Visual Studio 2010 using the Visual Studio 2008 toolset to retain
-compatibility with Windows XP Embedded.
+Builds with Visual Studio 2010; options are available to build using either the
+Visual Studio 2010 toolset requiring the Visual C++ 2010 Runtime installed, or
+Visual Studio 2008 toolset with a statically linked runtime for maximum system
+compatibility.
 
-Currently only works with GHA version 1.37 and later.
+Currently only works with GHAC version 1.37 and later.
 
 Uses [minhook v1.3.2](https://github.com/TsudaKageyu/minhook).
 
@@ -19,8 +21,8 @@ Uses [minhook v1.3.2](https://github.com/TsudaKageyu/minhook).
 
 ## Installation
 
-1. Download the [latest release](https://github.com/InvoxiPlayGames/ghaHook/releases/latest).
+1. Download the [latest release](https://github.com/InvoxiPlayGames/ghacHook/releases/latest).
     * The release package comes with [simpledllloader](https://github.com/aap/simpledllloader).
 2. Extract the ZIP to the GHArcade game directory. On a cabinet, this is at
-   `C:\GH3\DEPLOY\GH3`.
-3. Launch GH3.exe.
+   `C:\GH3\DEPLOY\GH3`. (partition label `RT-C`)
+3. Boot the cabinet to start the game or launch GH3.exe.

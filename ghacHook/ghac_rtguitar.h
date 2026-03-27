@@ -1,5 +1,5 @@
-#ifndef GHA_RTGUITAR_H
-#define GHA_RTGUITAR_H
+#ifndef GHAC_RTGUITAR_H
+#define GHAC_RTGUITAR_H
 
 typedef struct _rtGuitar
 {
@@ -14,4 +14,4 @@ typedef struct _rtGuitar
     int unk_0x18;
 } rtGuitar;
 
-#endif // GHA_RTGUITAR_H
+#endif // GHAC_RTGUITAR_H

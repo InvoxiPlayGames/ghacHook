@@ -2,6 +2,6 @@
 #define MAIN_H
 
 void init_ghaHook();
-void ghaHook_fatal(const char *text);
+void ghacHook_fatal(const char *text);
 
 #endif // MAIN_H

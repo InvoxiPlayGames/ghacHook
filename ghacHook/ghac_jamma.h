@@ -1,5 +1,5 @@
-#ifndef GHA_JAMMA_H
-#define GHA_JAMMA_H
+#ifndef GHAC_JAMMA_H
+#define GHAC_JAMMA_H
 
 typedef struct _jammamem_struct
 {
@@ -35,4 +35,4 @@ typedef struct _jammaop2_struct
     int volume2;
 } jammaop2_struct;
 
-#endif // GHA_JAMMA_H
+#endif // GHAC_JAMMA_H

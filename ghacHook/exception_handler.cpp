@@ -8,11 +8,11 @@ static int _debugRegister = -1;
 
 static void decryptionFailure()
 {
-    ghaHook_fatal("HASP decryption failed, the game can't start!\n\nMake sure the correct dongle is connected properly.");
+    ghacHook_fatal("HASP decryption failed, the game can't start!\n\nMake sure the correct dongle is connected properly.");
 }
 static void breakpointInstallFailure()
 {
-    ghaHook_fatal("Failed to install breakpoints, the game can't start!");
+    ghacHook_fatal("Failed to install breakpoints, the game can't start!");
 }
 static int ghaHook_startup_func()
 {

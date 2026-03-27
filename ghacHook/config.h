@@ -5,14 +5,14 @@
 extern "C" {
 #endif
 
-typedef struct _ghaHook_config
+typedef struct _ghacHook_config
 {
     int EnableIOHooks;
     int EnableDongleHooks;
     int EnableDeviceNameHook;
-} ghaHook_config;
+} ghacHook_config;
 
-extern ghaHook_config config;
+extern ghacHook_config config;
 
 void load_config();
 
