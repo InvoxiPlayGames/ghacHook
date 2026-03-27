@@ -27,6 +27,20 @@ static int handle_config_entry(void* user, const char* section, const char* name
 		if (strcmp(name, "SkipCRCChecks") == 0)
 			config.SkipCRCChecks = GHAC_CONFIG_BOOL(value);
 	}
+	else if (strcmp(section, "IO") == 0)
+	{
+		if (strcmp(name, "DipSwitch") == 0)
+		{
+			// expecting a value of 8 binary characters
+			int i = 0;
+			if (strlen(value) == 8)
+				for (i = 0; i < 8; i++)
+					if (value[i] == '1')
+						config.DipSwitch |= (1 << i);
+					else
+						config.DipSwitch &= ~(1 << i);
+		}
+	}
 	return 1;
 }
 
@@ -40,6 +54,8 @@ static void default_config()
     config.EnableDongleHooks = 1;
     config.EnableDeviceNameHook = 0;
 	config.EnableMultiInstallHook = 0;
+
+	config.DipSwitch = 0x60;
 }
 
 void load_config()

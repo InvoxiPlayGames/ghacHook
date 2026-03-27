@@ -14,6 +14,8 @@ typedef struct _ghacHook_config
 	// Filesystem
 	int EnableMultiInstallHook;
 	int SkipCRCChecks;
+	// IO
+	char DipSwitch;
 } ghacHook_config;
 
 extern ghacHook_config config;

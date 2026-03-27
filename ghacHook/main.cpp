@@ -81,7 +81,7 @@ int __cdecl JammaOpHooked(int opId, ...)
     switch (opId)
     {
     case kOpReadDipSwitches:
-        r = 0x4C; // no dip switches flipped
+        r = config.DipSwitch;
         break;
     case kOpReadData:
         {
@@ -95,7 +95,7 @@ int __cdecl JammaOpHooked(int opId, ...)
         {
             char *out_str = va_arg(args, char *);
             int str_length = va_arg(args, int);
-            strncpy(out_str, "ghaHook " GHACHOOK_VERSION_STR, str_length);
+            strncpy(out_str, "ghacHook " GHACHOOK_VERSION_STR, str_length);
             r = 0;
             break;
         }
