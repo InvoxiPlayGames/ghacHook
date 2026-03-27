@@ -18,6 +18,7 @@ Uses [minhook v1.3.2](https://github.com/TsudaKageyu/minhook).
 ## Features
 
 * Launch the game without an I/O board connected
+* Use seperate install folder for multiple GHAC/GH3 installs
 
 ## Installation
 

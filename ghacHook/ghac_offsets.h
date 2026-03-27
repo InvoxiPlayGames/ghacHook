@@ -28,6 +28,7 @@ typedef struct _ghac_exe_offsets
     int RTCoinUpSetLocation;
     // instruction patches
     int SIO_Device_get_status_name_check;
+	int ScriptUpdateCRCFiles_eof_check;
     // rdata
     int version_txt_path;
     // globals

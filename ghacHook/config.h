@@ -7,9 +7,13 @@ extern "C" {
 
 typedef struct _ghacHook_config
 {
+	// Devices
     int EnableIOHooks;
     int EnableDongleHooks;
     int EnableDeviceNameHook;
+	// Filesystem
+	int EnableMultiInstallHook;
+	int SkipCRCChecks;
 } ghacHook_config;
 
 extern ghacHook_config config;

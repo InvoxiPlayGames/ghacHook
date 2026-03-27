@@ -152,11 +152,32 @@ void init_console()
     freopen_s(&fDummy, "CONOUT$", "w", stdout);
 }
 
+char *(__cdecl *Aspyr_Win_GetPathUserVisible)(char *buffer);
+char * __cdecl Aspyr_Win_GetPathUserVisible_Hooked(char *buffer)
+{
+	//char *r = Aspyr_Win_GetPathUserVisible(buffer);
+	char *r = buffer;
+	GetCurrentDirectory(260, buffer);
+	strcat(buffer, "\\ghacUserData"); // TODO: lmao buffer size
+	printf("GetPathUserVisible: %s\n", r);
+	return r;
+}
+
+char *(__cdecl *Aspyr_Win_GetPathInstall)(char *buffer);
+char * __cdecl Aspyr_Win_GetPathInstall_Hooked(char *buffer)
+{
+	//char *r = Aspyr_Win_GetPathInstall(buffer);
+	char *r = buffer;
+	GetCurrentDirectory(260, buffer);
+	printf("GetPathInstall: %s\n", r);
+	return r;
+}
+
 void init_ghaHook()
 {
     init_console();
-    load_config();
     printf("Hello from ghacHook " GHACHOOK_VERSION_STR "!\n");
+    load_config();
     // hook all the functions
     MH_Initialize();
     if (config.EnableIOHooks)
@@ -172,13 +193,18 @@ void init_ghaHook()
     {
         MH_CreateHook((void *)offsets.hasp_login, hasp_login_hooked, NULL);
     }
+	if (config.EnableMultiInstallHook)
+	{
+		MH_CreateHookApi(L"AWL.dll", "?GetPathInstall@Win@Aspyr@@YAPADPAD@Z", Aspyr_Win_GetPathInstall_Hooked, (void **)&Aspyr_Win_GetPathInstall);
+		MH_CreateHookApi(L"AWL.dll", "?GetPathUserVisible@Win@Aspyr@@YAPADPAD@Z", Aspyr_Win_GetPathUserVisible_Hooked, (void **)&Aspyr_Win_GetPathUserVisible);
+	}
     MH_CreateHook((void *)offsets.SIO_check_dongle, SIO_check_dongle_hooked, NULL);
     MH_CreateHook((void *)offsets.SIO_update_periodicreboot, SIO_update_periodicreboot_hooked, NULL);
     MH_EnableHook(MH_ALL_HOOKS);
     // fix for missing D:\version.txt
     if (!PathFileExistsA("D:\\version.txt"))
     {
-        char newVersionText[] = "No: version.txt\nwas: found!\nSo: here's\na: placeholder\nfor: you!";
+        char newVersionText[] = "VERSION: Unknown\nDATE: Unknown\nDONGLE: Unknown\nOS: Unknown\nN/A: N/A";
         char newVersionPath[] = "version.txt";
         CodePatch(offsets.version_txt_path, newVersionPath, sizeof(newVersionPath));
         if (!PathFileExistsA("version.txt"))
@@ -198,6 +224,11 @@ void init_ghaHook()
         memset(six_nops, 0x90, sizeof(six_nops));
         CodePatch(offsets.SIO_Device_get_status_name_check, six_nops, sizeof(six_nops));
     }
+	if (config.SkipCRCChecks)
+	{
+		BYTE skip_eof_check[2] = { 0x90, 0x90 }; // JZ 0xXYZ -> NOP; NOP;
+		CodePatch(offsets.ScriptUpdateCRCFiles_eof_check, skip_eof_check, sizeof(skip_eof_check));
+	}
     BYTE ret = { 0xC3 };
     CodePatch(offsets.RTInitCoinUp, &ret, 1);
     CodePatch(offsets.RTCoinUpSetLocation, &ret, 1);

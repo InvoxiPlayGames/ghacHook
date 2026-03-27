@@ -25,6 +25,7 @@ void InitOffsets_4b1fe8d6(ghac_exe_offsets *offsets)
     offsets->RTCoinUpSetLocation = 0x511cd0;
     // instruction offsets
     offsets->SIO_Device_get_status_name_check = 0x5194f9; // jnz after the name check in SIO::Device::get_status
+	offsets->ScriptUpdateCRCFiles_eof_check = 0x40f6f7; // jz after checking feof in Mdl::ScriptUpdateCRCFiles
     // rdata
     offsets->version_txt_path = 0x929858;
     // waiting counts for service panel buttons

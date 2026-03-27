@@ -75,6 +75,7 @@
     <ClCompile Include="config.c" />
     <ClCompile Include="exception_handler.cpp" />
     <ClCompile Include="ghac_offsets.c" />
+    <ClCompile Include="ini.c" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +86,7 @@
     <ClInclude Include="ghac_jamma.h" />
     <ClInclude Include="ghac_offsets.h" />
     <ClInclude Include="ghac_rtguitar.h" />
+    <ClInclude Include="ini.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

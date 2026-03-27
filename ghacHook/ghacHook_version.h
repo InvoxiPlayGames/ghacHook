@@ -1,6 +1,6 @@
 #ifndef GHACHOOK_VERSION_H
 #define GHACHOOK_VERSION_H
 
-#define GHACHOOK_VERSION_STR "0.1.1-dev"
+#define GHACHOOK_VERSION_STR "0.2-dev"
 
 #endif // GHACHOOK_VERSION_H
